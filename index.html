@@ -89,7 +89,7 @@ footer{max-width:1400px;margin:8px auto 0;padding:16px 16px calc(16px + env(safe
 @supports not (aspect-ratio:16/9){#stage{height:0;padding-top:56.25%}#stage>*{position:absolute;top:0;left:0;width:100%;height:100%}.tools>*,.fi,header>*,.pills>*{margin:3px}.ch{margin-bottom:8px}}
 @supports not (aspect-ratio:16/9){#pl.pfs #stage{height:100%;padding-top:0}}
 @supports not (aspect-ratio:16/9){#pl:-webkit-full-screen #stage{height:100%;padding-top:0}}
-</style></head><body>
+#buf{position:absolute;top:50%;left:50%;width:120px;height:80px;margin:-40px 0 0 -60px;display:none;z-index:3;pointer-events:none;text-align:center;color:#fff;font:600 13px system-ui,sans-serif;text-shadow:0 1px 3px #000}#buf.on{display:block}#buf i{display:block;width:40px;height:40px;margin:0 auto 6px;border:5px solid #fff4;border-top-color:#fff;border-radius:50%;animation:sp .9s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}</style></head><body>
 <header>
 <h1 data-i="title"></h1>
 <div class="pills"><button id="mt" class="on" data-i="tv"></button><button id="mr" data-i="radio"></button></div>
@@ -126,8 +126,8 @@ const WA='<svg viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.
 function footer(){const a=ABOUT,ph=(x,p)=>x?esc(x):`<span style="opacity:.5">${p}</span>`,wd=(a.wa||"").replace(/\D/g,"");
  $("ft2").innerHTML=`<a class="fi wa" ${wd?`href="https://wa.me/${wd}" target="_blank" rel="noopener"`:""} aria-label="WhatsApp">${WA}</a><div class="fi" dir="ltr">${ph(a.name,t("fnm"))}</div><div class="fi">${a.logo?`<img src="${a.logo}" alt="${esc(a.company)}" title="${esc(a.company)}">`:`<b>${ph(a.company,t("fco"))}</b>`}</div>`}
 const EN={pk:"Pakistan",in:"India",bd:"Bangladesh",af:"Afghanistan",sa:"Saudi Arabia",ae:"UAE",qa:"Qatar",kw:"Kuwait",om:"Oman",bh:"Bahrain",iq:"Iraq",ir:"Iran",tr:"Turkey",eg:"Egypt",jo:"Jordan",lb:"Lebanon",sy:"Syria",ps:"Palestine",ye:"Yemen",ma:"Morocco",dz:"Algeria",tn:"Tunisia",ly:"Libya",sd:"Sudan",uk:"UK",us:"USA",ca:"Canada",au:"Australia",de:"Germany",fr:"France",it:"Italy",es:"Spain",ru:"Russia",cn:"China",jp:"Japan",kr:"South Korea",my:"Malaysia",id:"Indonesia",lk:"Sri Lanka",np:"Nepal",az:"Azerbaijan",kz:"Kazakhstan",uz:"Uzbekistan",za:"South Africa",ng:"Nigeria",br:"Brazil",mx:"Mexico"};
-const L={ur:{title:"📡 Devnora Tv",ttl:"Devnora Tv",tv:"📺 ٹی وی",radio:"📻 ریڈیو",box:"📺 باکس موڈ",sel:"چینل منتخب کریں",allL:"🌍 تمام لوڈ شدہ",allTv:"🌍 پوری دنیا لوڈ کریں",allR:"🌍 دنیا کے مقبول ترین",qTv:"چینل تلاش کریں",qR:"اسٹیشن تلاش کریں (Enter دبائیں)",fav:"★ پسندیدہ",hb:"بند چھپائیں",ldg:"لوڈ ہو رہا ہے: ",ldf:"لوڈ نہیں ہو سکا: ",rldg:"ریڈیو لوڈ ہو رہا ہے ...",rldf:"ریڈیو لوڈ نہیں ہو سکا",tot:"کل",shn:"دکھائے گئے",brk:"بند",first:"(پہلے 500، تلاش استعمال کریں)",none:"اس ملک کی کوئی فہرست نہیں ملی (یا ابھی لوڈ ہو رہی ہے)",fail:"یہ چینل نہیں چل رہا",auto:"خودکار",conf:"تمام ممالک کے ہزاروں چینلز لوڈ ہوں گے۔ جاری رکھیں؟",lang:"English",fco:"کمپنی کا نام",fnm:"آپ کا نام",okb:"✔ صرف چلنے والے",okc:"چلنے والے",chk:"چیک ہو رہے ہیں",chm:"چینل چیک ہو رہے ہیں، چلنے والے چینل جیسے جیسے ملیں گے یہاں آتے جائیں گے ..."},
-en:{title:"📡 Devnora Tv",ttl:"Devnora Tv",tv:"📺 TV",radio:"📻 Radio",box:"📺 Box mode",sel:"Select a channel",allL:"🌍 All loaded",allTv:"🌍 Load whole world",allR:"🌍 World's most popular",qTv:"Search channels",qR:"Search stations (press Enter)",fav:"★ Favourites",hb:"Hide broken",ldg:"Loading: ",ldf:"Could not load: ",rldg:"Loading radio ...",rldf:"Could not load radio",tot:"Total",shn:"Shown",brk:"Broken",first:"(first 500, use search)",none:"No list found for this country (or still loading)",fail:"This channel is not playing",auto:"Auto",conf:"Thousands of channels from all countries will load. Continue?",lang:"اردو",fco:"Company name",fnm:"Your name",okb:"✔ Working only",okc:"Working",chk:"Checking",chm:"Checking channels, working ones will appear here as they are found ..."}};
+const L={ur:{title:"📡 Devnora Tv",ttl:"Devnora Tv",tv:"📺 ٹی وی",radio:"📻 ریڈیو",box:"📺 باکس موڈ",sel:"چینل منتخب کریں",allL:"🌍 تمام لوڈ شدہ",allTv:"🌍 پوری دنیا لوڈ کریں",allR:"🌍 دنیا کے مقبول ترین",qTv:"چینل تلاش کریں",qR:"اسٹیشن تلاش کریں (Enter دبائیں)",fav:"★ پسندیدہ",hb:"بند چھپائیں",ldg:"لوڈ ہو رہا ہے: ",ldf:"لوڈ نہیں ہو سکا: ",rldg:"ریڈیو لوڈ ہو رہا ہے ...",rldf:"ریڈیو لوڈ نہیں ہو سکا",tot:"کل",shn:"دکھائے گئے",brk:"بند",first:"(پہلے 500، تلاش استعمال کریں)",none:"اس ملک کی کوئی فہرست نہیں ملی (یا ابھی لوڈ ہو رہی ہے)",fail:"یہ چینل نہیں چل رہا",auto:"خودکار",conf:"تمام ممالک کے ہزاروں چینلز لوڈ ہوں گے۔ جاری رکھیں؟",lang:"English",fco:"کمپنی کا نام",fnm:"آپ کا نام",okb:"✔ صرف چلنے والے",okc:"چلنے والے",chk:"چیک ہو رہے ہیں",bfr:"بفرنگ ہو رہی ہے",chm:"چینل چیک ہو رہے ہیں، چلنے والے چینل جیسے جیسے ملیں گے یہاں آتے جائیں گے ..."},
+en:{title:"📡 Devnora Tv",ttl:"Devnora Tv",tv:"📺 TV",radio:"📻 Radio",box:"📺 Box mode",sel:"Select a channel",allL:"🌍 All loaded",allTv:"🌍 Load whole world",allR:"🌍 World's most popular",qTv:"Search channels",qR:"Search stations (press Enter)",fav:"★ Favourites",hb:"Hide broken",ldg:"Loading: ",ldf:"Could not load: ",rldg:"Loading radio ...",rldf:"Could not load radio",tot:"Total",shn:"Shown",brk:"Broken",first:"(first 500, use search)",none:"No list found for this country (or still loading)",fail:"This channel is not playing",auto:"Auto",conf:"Thousands of channels from all countries will load. Continue?",lang:"اردو",fco:"Company name",fnm:"Your name",okb:"✔ Working only",okc:"Working",chk:"Checking",bfr:"Buffering",chm:"Checking channels, working ones will appear here as they are found ..."}};
 let lang=ls.get("lang","ur");const t=k=>L[lang][k];
 const TH=[["metal","میٹل","Metal"],["dark","تاریک","Dark"],["light","روشن","Light"],["ocean","سمندر","Ocean"],["sunset","غروب","Sunset"],["amoled","AMOLED","AMOLED"]];
 function buildTh(){const c=$("th").value;$("th").innerHTML=TH.map(x=>`<option value="${x[0]}">🎨 ${lang=="ur"?x[1]:x[2]}</option>`).join("");$("th").value=c||ls.get("theme2","metal")}
@@ -212,14 +212,24 @@ function render(soft){
  if(soft===true){l.scrollTop=st0;window.scrollTo(0,sy);if(fu){const e=[...l.children].find(x=>x.dataset&&x.dataset.u==fu);if(e)e.focus({preventScroll:true})}}}
 function play(c){
  
- cur=c;$("nm").textContent=c.name;$("sb").textContent=[c.grp,c.cc].filter(Boolean).join(" · ");$("lg").src=c.logo||"";
+ holding=false;holds=0;buf.classList.remove("on");cur=c;$("nm").textContent=c.name;mSess(c);$("sb").textContent=[c.grp,c.cc].filter(Boolean).join(" · ");$("lg").src=c.logo||"";
  if(hls){hls.destroy();hls=null}
  const fail=()=>{bad.add(c.url);toast(t("fail"));render()};
  v.onerror=fail;$("ql").style.display="none";
  const isH=/m3u8/i.test(c.url)||(mode=="tv"&&!/\.(mp4|mp3|aac|ogg)(\?|$)/i.test(c.url));
  if(isH&&window.Hls&&Hls.isSupported()){
-  hls=new Hls({abrEwmaDefaultEstimate:8e6,startFragPrefetch:true,maxBufferLength:30,backBufferLength:20,manifestLoadingTimeOut:8000,manifestLoadingMaxRetry:1,levelLoadingMaxRetry:2,fragLoadingMaxRetry:3});hls.loadSource(c.url);hls.attachMedia(v);hls.on(Hls.Events.MANIFEST_PARSED,(e,d)=>buildQ(d.levels));
-  hls.on(Hls.Events.ERROR,(e,d)=>{if(d.fatal)fail()});
+  const cn=navigator.connection||navigator.mozConnection||navigator.webkitConnection,est=cn&&cn.downlink?Math.max(3e5,Math.min(4e6,cn.downlink*1e6*.6)):8e5;
+  const h=hls=new Hls({abrEwmaDefaultEstimate:est,abrBandWidthFactor:.8,abrBandWidthUpFactor:.5,capLevelToPlayerSize:true,startFragPrefetch:true,
+   maxBufferLength:60,maxMaxBufferLength:120,maxBufferSize:80e6,backBufferLength:15,lowLatencyMode:false,liveSyncDurationCount:4,maxBufferHole:.6,nudgeMaxRetry:8,
+   manifestLoadingTimeOut:15000,manifestLoadingMaxRetry:2,manifestLoadingRetryDelay:1000,levelLoadingTimeOut:15000,levelLoadingMaxRetry:4,levelLoadingRetryDelay:1000,
+   fragLoadingTimeOut:30000,fragLoadingMaxRetry:6,fragLoadingRetryDelay:1000,fragLoadingMaxRetryTimeout:16000});
+  h.loadSource(c.url);h.attachMedia(v);h.on(Hls.Events.MANIFEST_PARSED,(e,d)=>buildQ(d.levels));
+  let ne=0,me=0;h.on(Hls.Events.FRAG_LOADED,()=>{ne=0});
+  h.on(Hls.Events.ERROR,(e,d)=>{if(!d.fatal||hls!==h)return;
+   const mf=/manifest/i.test(d.details||"");
+   if(d.type===Hls.ErrorTypes.NETWORK_ERROR&&ne<(mf?1:4)){ne++;setTimeout(()=>{if(hls===h)try{h.startLoad()}catch(_){}},1500*ne);return}
+   if(d.type===Hls.ErrorTypes.MEDIA_ERROR&&me<3){me++;try{h.recoverMediaError()}catch(_){}return}
+   fail()});
  }else v.src=c.url;
  v.play().catch(()=>{});render()}
 function go(c){play(c);if(box&&mode=="tv"&&!isFs())fs()}
@@ -227,7 +237,18 @@ function buildQ(L){const q=$("ql");if(!L||L.length<2||mode=="radio"){q.style.dis
  const o=['<option value="-1">'+t("auto")+'</option>'];
  L.map((l,i)=>[l.height||Math.round(l.bitrate/1e3),i,l.height]).sort((a,b)=>b[0]-a[0]).forEach(x=>o.push(`<option value="${x[1]}">${x[2]?x[2]+"p":x[0]+"k"}</option>`));
  q.innerHTML=o.join("");q.style.display="";q.value="-1"}
-$("ql").onchange=e=>{if(hls)hls.currentLevel=+e.target.value};
+$("ql").onchange=e=>{if(hls){hls.autoLevelCapping=-1;hls.currentLevel=+e.target.value}};
+const buf=document.createElement("div");buf.id="buf";buf.innerHTML='<i></i><b id="bt"></b>';stage.appendChild(buf);
+let holding=false,holds=0;
+function ahead(){const b=v.buffered,x=v.currentTime;for(let i=0;i<b.length;i++)if(x>=b.start(i)-.15&&x<=b.end(i)+.05)return b.end(i)-x;return 0}
+function showBuf(){$("bt").textContent=t("bfr");buf.classList.add("on")}
+setInterval(()=>{if(!hls)return;const a=ahead();
+ if(!holding){if(!v.paused&&!v.ended&&v.currentTime>.5&&a<1){holding=true;holds++;v.pause();showBuf();
+   if(holds>=2&&$("ql").value=="-1"&&hls.levels&&hls.levels.length>1){const cl=hls.currentLevel>=0?hls.currentLevel:hls.loadLevel;if(cl>0)hls.autoLevelCapping=cl-1}}}
+ else{if(!v.paused){holding=false;buf.classList.remove("on")}else if(a>=8){holding=false;buf.classList.remove("on");v.play().catch(()=>{})}else $("bt").textContent=t("bfr")+" "+Math.round(a)+"/8s"}},500);
+v.addEventListener("playing",()=>{if(!holding)buf.classList.remove("on")});
+function mSess(c){if(!("mediaSession" in navigator)||!window.MediaMetadata)return;try{navigator.mediaSession.metadata=new MediaMetadata({title:c.name,artist:"Devnora Tv",album:c.grp||""});
+ navigator.mediaSession.setActionHandler("play",()=>v.play().catch(()=>{}));navigator.mediaSession.setActionHandler("pause",()=>v.pause())}catch(e){}}
 v.onplay=v.onpause=()=>{$("pp").textContent=v.paused?"▶":"⏸";stage.classList.toggle("playing",!v.paused)};
 $("pp").onclick=()=>v.paused?v.play().catch(()=>{}):v.pause();
 $("vol").oninput=e=>v.volume=e.target.value;
